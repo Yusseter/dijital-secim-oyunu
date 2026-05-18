@@ -1,0 +1,4 @@
+- Add README.md (Also add qr code)
+- Fix mobile vision of the game
+- Fix button clipping
+- Fix "Teknoloji gelişirken değerlerimizi de koruyalım." texts color on light and modern vision
