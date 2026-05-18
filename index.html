@@ -38,6 +38,56 @@
       padding: 22px;
     }
 
+    body[data-theme="modern"][data-color-scheme="light"] {
+      --bg-1: #edf4fb;
+      --bg-2: #fbfdff;
+      --card: rgba(255, 255, 255, 0.86);
+      --card-2: rgba(20, 42, 76, 0.07);
+      --text: #172033;
+      --muted: #566474;
+      --line: rgba(20, 42, 76, 0.18);
+      background:
+        radial-gradient(circle at top left, rgba(85, 183, 255, 0.20), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(255, 95, 114, 0.14), transparent 30%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2));
+    }
+
+    body[data-theme="modern"][data-color-scheme="light"] .brand-strip,
+    body[data-theme="modern"][data-color-scheme="light"] .panel,
+    body[data-theme="modern"][data-color-scheme="light"] .side {
+      box-shadow: 0 22px 70px rgba(24, 39, 63, 0.14);
+    }
+
+    body[data-theme="modern"][data-color-scheme="light"] .tag {
+      background: rgba(22, 143, 255, 0.12);
+      color: #18527c;
+      border-color: rgba(22, 143, 255, 0.24);
+    }
+
+    body[data-theme="modern"][data-color-scheme="light"] .scenario-card,
+    body[data-theme="modern"][data-color-scheme="light"] .phone,
+    body[data-theme="modern"][data-color-scheme="light"] .post,
+    body[data-theme="modern"][data-color-scheme="light"] .quick-stat,
+    body[data-theme="modern"][data-color-scheme="light"] .play-step,
+    body[data-theme="modern"][data-color-scheme="light"] .mini,
+    body[data-theme="modern"][data-color-scheme="light"] .feedback-item,
+    body[data-theme="modern"][data-color-scheme="light"] .side-card {
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    body[data-theme="modern"][data-color-scheme="light"] .decision-box p,
+    body[data-theme="modern"][data-color-scheme="light"] .feedback-item b {
+      color: var(--text);
+    }
+
+    body[data-theme="modern"][data-color-scheme="light"] .notice {
+      color: #684a00;
+    }
+
+    body[data-theme="modern"][data-color-scheme="light"] .badge {
+      color: #14663e;
+    }
+
     .app {
       width: min(1120px, 100%);
       display: grid;
@@ -53,6 +103,7 @@
       gap: 22px;
       min-height: 150px;
       padding: 18px 26px;
+      position: relative;
       background: rgba(255, 255, 255, 0.09);
       border: 1px solid var(--line);
       border-radius: 24px;
@@ -101,6 +152,7 @@
       display: block;
       font-size: 22px;
       letter-spacing: 0;
+      overflow-wrap: anywhere;
     }
 
     .brand-title span {
@@ -108,6 +160,86 @@
       margin-top: 4px;
       color: var(--muted);
       font-size: 14px;
+    }
+
+    .project-meta {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      padding: 10px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .meta-item {
+      min-height: 66px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .meta-item span {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .meta-item b {
+      display: block;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .project-slogan {
+      grid-column: 1 / -1;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(85, 183, 255, 0.12);
+      border: 1px solid rgba(85, 183, 255, 0.24);
+      color: #dbefff;
+      font-size: 13px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .theme-controls {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      z-index: 20;
+    }
+
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.10);
+      border: 1px solid var(--line);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+    }
+
+    .theme-toggle:hover {
+      transform: none;
+      background: rgba(255, 255, 255, 0.16);
     }
 
     .app[data-screen="start"] .panel {
@@ -538,6 +670,355 @@
       border-color: rgba(85, 183, 255, 0.28);
     }
 
+    body[data-theme="formal"] {
+      --bg-1: #f3efe4;
+      --bg-2: #fbfaf4;
+      --card: rgba(255, 255, 255, 0.88);
+      --card-2: rgba(19, 34, 78, 0.06);
+      --text: #18213a;
+      --muted: #566070;
+      --line: rgba(19, 34, 78, 0.34);
+      --accent: #25386f;
+      --accent-2: #b02f3a;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(176, 47, 58, 0.10), transparent 18%),
+        radial-gradient(circle at 85% 82%, rgba(37, 56, 111, 0.12), transparent 20%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2));
+    }
+
+    body[data-theme="formal"] .app {
+      position: relative;
+      z-index: 1;
+    }
+
+    body[data-theme="formal"] .brand-strip,
+    body[data-theme="formal"] .panel,
+    body[data-theme="formal"] .side {
+      position: relative;
+      border: 3px solid #25386f;
+      background: var(--card);
+      box-shadow: 0 18px 55px rgba(19, 34, 78, 0.14);
+      backdrop-filter: none;
+    }
+
+    body[data-theme="formal"] .panel::before,
+    body[data-theme="formal"] .side::before {
+      position: absolute;
+      top: -13px;
+      right: 18px;
+      padding: 4px 10px;
+      background: #fbfaf4;
+      color: #25386f;
+      border: 2px solid #25386f;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+    }
+
+    body[data-theme="formal"] .panel::before {
+      content: "ETKİLEŞİMLİ UYGULAMA";
+    }
+
+    body[data-theme="formal"] .side::before {
+      content: "DEĞER GÖSTERGESİ";
+    }
+
+    body[data-theme="formal"] .brand-strip {
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(37, 56, 111, 0.09), transparent 36%),
+        rgba(255, 255, 255, 0.92);
+    }
+
+    body[data-theme="formal"] .project-meta {
+      padding: 12px;
+      border: 3px solid #25386f;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 14px 44px rgba(19, 34, 78, 0.12);
+      backdrop-filter: none;
+    }
+
+    body[data-theme="formal"] .meta-item {
+      border: 2px solid rgba(37, 56, 111, 0.28);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    body[data-theme="formal"] .meta-item span {
+      color: #7e1f2b;
+    }
+
+    body[data-theme="formal"] .meta-item b {
+      color: #111827;
+    }
+
+    body[data-theme="formal"] .project-slogan {
+      border-radius: 6px;
+      background: rgba(176, 47, 58, 0.08);
+      border: 2px solid rgba(176, 47, 58, 0.24);
+      color: #7e1f2b;
+    }
+
+    body[data-theme="formal"] .brand-strip::before,
+    body[data-theme="formal"] .brand-strip::after {
+      content: "";
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #b02f3a;
+      border: 2px solid rgba(19, 34, 78, 0.28);
+    }
+
+    body[data-theme="formal"] .brand-strip::before {
+      left: 18px;
+      bottom: -14px;
+    }
+
+    body[data-theme="formal"] .brand-strip::after {
+      right: 18px;
+      top: -14px;
+    }
+
+    body[data-theme="formal"] .brand-title strong {
+      font-size: 28px;
+      line-height: 1.08;
+      color: #111827;
+      text-transform: uppercase;
+    }
+
+    body[data-theme="formal"] .brand-title span {
+      color: #25386f;
+      font-weight: 800;
+    }
+
+    body[data-theme="formal"] .logo-frame {
+      background: #ffffff;
+      border: 2px solid rgba(19, 34, 78, 0.35);
+      border-radius: 8px;
+      box-shadow: none;
+    }
+
+    body[data-theme="formal"] .theme-toggle {
+      background: rgba(37, 56, 111, 0.96);
+      border-color: rgba(255, 255, 255, 0.48);
+      color: #ffffff;
+    }
+
+    body[data-theme="formal"] .theme-controls {
+      top: 14px;
+      right: 14px;
+    }
+
+    body[data-theme="formal"] h1,
+    body[data-theme="formal"] h2,
+    body[data-theme="formal"] h3,
+    body[data-theme="formal"] .choice-title,
+    body[data-theme="formal"] .play-step b {
+      color: #111827;
+    }
+
+    body[data-theme="formal"] p,
+    body[data-theme="formal"] .hero-copy {
+      color: #3f4858;
+    }
+
+    body[data-theme="formal"] .tag,
+    body[data-theme="formal"] .post-chip {
+      background: rgba(176, 47, 58, 0.10);
+      border-color: rgba(176, 47, 58, 0.36);
+      color: #7e1f2b;
+      font-weight: 800;
+    }
+
+    body[data-theme="formal"] .play-step,
+    body[data-theme="formal"] .mini,
+    body[data-theme="formal"] .feedback-item,
+    body[data-theme="formal"] .side-card,
+    body[data-theme="formal"] .scenario-card {
+      background: rgba(255, 255, 255, 0.76);
+      border: 2px solid rgba(37, 56, 111, 0.28);
+      border-radius: 8px;
+    }
+
+    body[data-theme="formal"] .step-number,
+    body[data-theme="formal"] .category-icon {
+      background: #25386f;
+      color: #ffffff;
+      border-radius: 6px;
+    }
+
+    body[data-theme="formal"] .primary {
+      background: #b02f3a;
+      color: #ffffff;
+      border: 2px solid #8c202a;
+    }
+
+    body[data-theme="formal"] button {
+      color: #18213a;
+      background: rgba(255, 255, 255, 0.82);
+      border: 2px solid rgba(37, 56, 111, 0.24);
+      border-radius: 8px;
+    }
+
+    body[data-theme="formal"] button:hover {
+      background: #ffffff;
+      border-color: #25386f;
+    }
+
+    body[data-theme="formal"] .decision-box {
+      background: rgba(37, 56, 111, 0.08);
+      border: 2px solid rgba(37, 56, 111, 0.34);
+      border-radius: 8px;
+    }
+
+    body[data-theme="formal"] .decision-label {
+      background: #25386f;
+      color: #ffffff;
+    }
+
+    body[data-theme="formal"] .decision-box p {
+      color: #111827;
+    }
+
+    body[data-theme="formal"] .choice-prompt,
+    body[data-theme="formal"] .notice,
+    body[data-theme="formal"] .fuar-question {
+      background: rgba(176, 47, 58, 0.08);
+      border: 2px solid rgba(176, 47, 58, 0.28);
+      color: #5f1f26;
+      border-radius: 8px;
+    }
+
+    body[data-theme="formal"] .bar {
+      background: rgba(37, 56, 111, 0.12);
+    }
+
+    body[data-theme="formal"] .phone {
+      border-color: rgba(37, 56, 111, 0.18);
+      background: rgba(37, 56, 111, 0.05);
+    }
+
+    body[data-theme="formal"] .post {
+      background: #ffffff;
+      border-color: rgba(37, 56, 111, 0.22);
+    }
+
+    body[data-theme="formal"][data-color-scheme="dark"] {
+      --bg-1: #171512;
+      --bg-2: #2a261f;
+      --card: rgba(32, 29, 24, 0.94);
+      --card-2: rgba(247, 241, 223, 0.08);
+      --text: #f7f1df;
+      --muted: #d8cdb7;
+      --line: rgba(247, 244, 234, 0.42);
+      background:
+        radial-gradient(circle at 12% 18%, rgba(176, 47, 58, 0.16), transparent 18%),
+        radial-gradient(circle at 85% 82%, rgba(247, 244, 234, 0.10), transparent 20%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2));
+    }
+
+    body[data-theme="formal"][data-color-scheme="dark"] .brand-strip,
+    body[data-theme="formal"][data-color-scheme="dark"] .panel,
+    body[data-theme="formal"][data-color-scheme="dark"] .side {
+      border-color: #f7f1df;
+      background: var(--card);
+      box-shadow: 0 18px 55px rgba(0, 0, 0, 0.28);
+    }
+
+    body[data-theme="formal"][data-color-scheme="dark"] .panel::before,
+    body[data-theme="formal"][data-color-scheme="dark"] .side::before {
+      background: #171512;
+      color: #f7f1df;
+      border-color: #f7f1df;
+    }
+
+    body[data-theme="formal"][data-color-scheme="dark"] .brand-strip {
+      background:
+        linear-gradient(135deg, rgba(247, 241, 223, 0.08), transparent 36%),
+        rgba(32, 29, 24, 0.94);
+    }
+
+    body[data-theme="formal"][data-color-scheme="dark"] .project-meta {
+      background: rgba(32, 29, 24, 0.90);
+      border-color: #f7f1df;
+      box-shadow: 0 14px 44px rgba(0, 0, 0, 0.26);
+    }
+
+    body[data-theme="formal"][data-color-scheme="dark"] .meta-item,
+    body[data-theme="formal"][data-color-scheme="dark"] .play-step,
+    body[data-theme="formal"][data-color-scheme="dark"] .mini,
+    body[data-theme="formal"][data-color-scheme="dark"] .feedback-item,
+    body[data-theme="formal"][data-color-scheme="dark"] .side-card,
+    body[data-theme="formal"][data-color-scheme="dark"] .scenario-card {
+      background: rgba(247, 241, 223, 0.07);
+      border-color: rgba(247, 241, 223, 0.28);
+    }
+
+    body[data-theme="formal"][data-color-scheme="dark"] .brand-title strong,
+    body[data-theme="formal"][data-color-scheme="dark"] h1,
+    body[data-theme="formal"][data-color-scheme="dark"] h2,
+    body[data-theme="formal"][data-color-scheme="dark"] h3,
+    body[data-theme="formal"][data-color-scheme="dark"] .choice-title,
+    body[data-theme="formal"][data-color-scheme="dark"] .play-step b,
+    body[data-theme="formal"][data-color-scheme="dark"] .meta-item b,
+    body[data-theme="formal"][data-color-scheme="dark"] .feedback-item b {
+      color: #fff8e8;
+    }
+
+    body[data-theme="formal"][data-color-scheme="dark"] .brand-title span,
+    body[data-theme="formal"][data-color-scheme="dark"] p,
+    body[data-theme="formal"][data-color-scheme="dark"] .hero-copy,
+    body[data-theme="formal"][data-color-scheme="dark"] .meta-item span {
+      color: #d8cdb7;
+    }
+
+    body[data-theme="formal"][data-color-scheme="dark"] .project-slogan,
+    body[data-theme="formal"][data-color-scheme="dark"] .choice-prompt,
+    body[data-theme="formal"][data-color-scheme="dark"] .notice,
+    body[data-theme="formal"][data-color-scheme="dark"] .fuar-question {
+      background: rgba(176, 47, 58, 0.14);
+      border-color: rgba(247, 241, 223, 0.24);
+      color: #ffe2d9;
+    }
+
+    body[data-theme="formal"][data-color-scheme="dark"] button {
+      color: #fff8e8;
+      background: rgba(247, 241, 223, 0.08);
+      border-color: rgba(247, 241, 223, 0.28);
+    }
+
+    body[data-theme="formal"][data-color-scheme="dark"] button:hover {
+      background: rgba(247, 241, 223, 0.14);
+      border-color: #f7f1df;
+    }
+
+    body[data-theme="formal"][data-color-scheme="dark"] .primary,
+    body[data-theme="formal"][data-color-scheme="dark"] .theme-toggle {
+      background: #b02f3a;
+      border-color: #f7f1df;
+      color: #ffffff;
+    }
+
+    body[data-theme="formal"][data-color-scheme="dark"] .decision-box {
+      background: rgba(247, 241, 223, 0.08);
+      border-color: rgba(247, 241, 223, 0.30);
+    }
+
+    body[data-theme="formal"][data-color-scheme="dark"] .decision-box p {
+      color: #fff8e8;
+    }
+
+    body[data-theme="formal"][data-color-scheme="dark"] .post {
+      background: rgba(247, 241, 223, 0.09);
+      border-color: rgba(247, 241, 223, 0.24);
+    }
+
+    body[data-theme="formal"][data-color-scheme="dark"] .logo-frame {
+      background: #f7f1df;
+    }
+
     .footer-note {
       margin-top: 18px;
       font-size: 13px;
@@ -569,6 +1050,22 @@
       }
       .brand-title strong { font-size: 18px; }
       .brand-title span { font-size: 12px; }
+      .project-meta {
+        grid-template-columns: 1fr;
+      }
+      .meta-item {
+        min-height: auto;
+      }
+      .theme-controls {
+        top: 8px;
+        right: 8px;
+        justify-content: flex-end;
+        max-width: calc(100vw - 16px);
+      }
+      .theme-toggle {
+        padding: 7px 9px;
+        font-size: 12px;
+      }
       h1 { font-size: 38px; }
       .result-title { font-size: 34px; }
       .start-screen {
@@ -619,6 +1116,7 @@
 
       .side,
       .btns,
+      .theme-controls,
       #start,
       #game,
       #feedback {
@@ -638,20 +1136,45 @@
     }
   </style>
 </head>
-<body>
+<body data-theme="modern" data-color-mode="auto" data-color-scheme="dark">
+  <div class="theme-controls" aria-label="Görünüm ayarları">
+    <button class="theme-toggle" id="themeToggle" type="button" onclick="toggleTheme()">Pano görünümü</button>
+    <button class="theme-toggle" id="colorModeToggle" type="button" onclick="cycleColorMode()">Renk: Otomatik</button>
+  </div>
+
   <main class="app" data-screen="start">
     <header class="brand-strip" aria-label="Proje kurum logoları">
       <div class="logo-frame school-frame">
         <img class="brand-logo" src="Logos/OSOAIHL_logo.png" alt="Okul logosu" />
       </div>
       <div class="brand-title">
-        <strong>Dijital Seçim</strong>
-        <span>Değer Farkındalığı Oyunu</span>
+        <strong id="brandMainTitle">DİJİTAL ÇAĞDA DEĞER EROZYONU</strong>
+        <span id="brandSubTitle">Gençlerin Sosyal Mecrada Dini ve Ahlaki Değerlere Yaklaşımı</span>
       </div>
       <div class="logo-frame tubitak-frame">
         <img class="brand-logo" src="Logos/tubitak_logo.png" alt="TÜBİTAK logosu" />
       </div>
     </header>
+
+    <section class="project-meta" aria-label="Proje bilgileri">
+      <div class="meta-item">
+        <span>Proje Türü</span>
+        <b>Araştırma</b>
+      </div>
+      <div class="meta-item">
+        <span>Ana Alanı</span>
+        <b>Sosyoloji</b>
+      </div>
+      <div class="meta-item">
+        <span>Tematik Konusu</span>
+        <b>Değerler Eğitimi</b>
+      </div>
+      <div class="meta-item">
+        <span>Proje Amacı</span>
+        <b>Sosyal medya kullanımında değer farkındalığı oluşturmak</b>
+      </div>
+      <div class="project-slogan">Teknoloji gelişirken değerlerimizi de koruyalım.</div>
+    </section>
 
     <section class="panel">
       <div id="start" class="screen active start-screen">
@@ -831,6 +1354,109 @@
         advice: 'Fikir ayrılığında bile dili yumuşak, açık ve kırmadan kullan.'
       }
     };
+
+    const themeStorageKey = 'dijital-secim-theme';
+    const colorModeStorageKey = 'dijital-secim-color-mode';
+    const colorModeOrder = ['auto', 'dark', 'light'];
+    const colorModeLabels = {
+      auto: 'Renk: Otomatik',
+      dark: 'Renk: Koyu',
+      light: 'Renk: Aydınlık'
+    };
+
+    function setTheme(theme) {
+      const activeTheme = theme === 'formal' ? 'formal' : 'modern';
+      document.body.dataset.theme = activeTheme;
+
+      const toggle = document.getElementById('themeToggle');
+      if (toggle) {
+        toggle.textContent = activeTheme === 'formal' ? 'Modern görünüm' : 'Pano görünümü';
+        toggle.setAttribute('aria-pressed', activeTheme === 'formal' ? 'true' : 'false');
+      }
+
+      try {
+        localStorage.setItem(themeStorageKey, activeTheme);
+      } catch (error) {
+        // Tema seçimi saklanamazsa oyun yine çalışmaya devam eder.
+      }
+    }
+
+    function toggleTheme() {
+      setTheme(document.body.dataset.theme === 'formal' ? 'modern' : 'formal');
+    }
+
+    function getSystemColorScheme() {
+      if (typeof window !== 'undefined' && window.matchMedia) {
+        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+
+      return 'dark';
+    }
+
+    function applyColorMode(mode) {
+      const activeMode = colorModeOrder.includes(mode) ? mode : 'auto';
+      const activeScheme = activeMode === 'auto' ? getSystemColorScheme() : activeMode;
+      document.body.dataset.colorMode = activeMode;
+      document.body.dataset.colorScheme = activeScheme;
+
+      const toggle = document.getElementById('colorModeToggle');
+      if (toggle) {
+        toggle.textContent = colorModeLabels[activeMode];
+        toggle.setAttribute('aria-label', `${colorModeLabels[activeMode]}. Değiştirmek için tıkla.`);
+      }
+
+      try {
+        localStorage.setItem(colorModeStorageKey, activeMode);
+      } catch (error) {
+        // Renk seçimi saklanamazsa sistem ayarıyla devam edilir.
+      }
+    }
+
+    function cycleColorMode() {
+      const currentMode = document.body.dataset.colorMode || 'auto';
+      const currentIndex = colorModeOrder.indexOf(currentMode);
+      const nextMode = colorModeOrder[(currentIndex + 1) % colorModeOrder.length];
+      applyColorMode(nextMode);
+    }
+
+    function initColorMode() {
+      let savedMode = 'auto';
+
+      try {
+        savedMode = localStorage.getItem(colorModeStorageKey) || 'auto';
+      } catch (error) {
+        savedMode = 'auto';
+      }
+
+      applyColorMode(savedMode);
+
+      if (typeof window !== 'undefined' && window.matchMedia) {
+        const media = window.matchMedia('(prefers-color-scheme: light)');
+        const handleSystemChange = () => {
+          if (document.body.dataset.colorMode === 'auto') {
+            applyColorMode('auto');
+          }
+        };
+
+        if (media.addEventListener) {
+          media.addEventListener('change', handleSystemChange);
+        } else if (media.addListener) {
+          media.addListener(handleSystemChange);
+        }
+      }
+    }
+
+    function initTheme() {
+      let savedTheme = 'modern';
+
+      try {
+        savedTheme = localStorage.getItem(themeStorageKey) || 'modern';
+      } catch (error) {
+        savedTheme = 'modern';
+      }
+
+      setTheme(savedTheme);
+    }
 
     const scenarioPool = [
       {
@@ -2120,6 +2746,8 @@
       startGame();
     }
 
+    initTheme();
+    initColorMode();
     updateMeters();
   </script>
 </body>
