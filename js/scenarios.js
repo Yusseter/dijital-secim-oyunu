@@ -133,7 +133,7 @@ const scenarioPool = [
     category: 'Mahremiyet',
     icon: 'M',
     tip: 'Bir görüntüye erişebilmek, onu saklama ya da yayma hakkı vermez.',
-    text: 'Bir arkadaşın özel hayatına ait bir görüntü izinsiz olarak paylaşılmış.',
+    text: 'Bir arkadaşının özel hayatına ait bir görüntü izinsiz olarak paylaşılmış.',
     postTitle: 'Hikaye paylaşımı',
     postText: 'Görüntü ilgi çekiyor ancak kişinin izni olup olmadığı belli değil.',
     choices: [
