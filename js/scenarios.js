@@ -434,7 +434,7 @@ const scenarioPool = [
     category: 'Doğruluk ve kaynak',
     icon: 'K',
     tip: 'Çok cazip görünen dijital vaatler çoğu zaman kontrol ister.',
-    text: 'Bir hesap, hediye kazanmak için linke tıklamanı ve paylaşım yapmanı istiyor.',
+    text: 'İrfan isimli bir hesap, hediye kazanmak için linke tıklamanı ve paylaşım yapmanı istiyor.',
     postTitle: 'Hediye çekilişi',
     postText: 'Hesap yeni açılmış; yorumlarda herkes arkadaşlarını etiketliyor.',
     choices: [
@@ -443,7 +443,7 @@ const scenarioPool = [
         effect: { truth: -12, responsibility: -16 },
         title: 'Riskli bağlantı yayıldı',
         what: 'Güvenilirliği belirsiz bir bağlantı hem seni hem başkalarını riske attı.',
-        better: 'Hesabı, bağlantıyı ve resmi duyuruları kontrol etmek gerekir.',
+        better: 'İrfan isimli hesabı, bağlantıyı ve resmi duyuruları kontrol etmek gerekir.',
         notice: 'Dijital sorumluluk, güvenli olmayan bağlantıları yaymamaktır.'
       },
       {
@@ -463,7 +463,7 @@ const scenarioPool = [
         notice: 'İyi niyetli paylaşım da risk yayabilir.'
       },
       {
-        text: 'Linke tıklamam ama hesabı biraz incelerim.',
+        text: 'Linke tıklamam ama İrfan isimli hesabı biraz incelerim.',
         effect: { truth: 8, responsibility: 10 },
         title: 'Risk azaltıldı',
         what: 'Bağlantıyı açmadan önce hesabın güvenilirliğini anlamaya çalıştın.',
@@ -692,12 +692,12 @@ const scenarioPool = [
     category: 'Mahremiyet',
     icon: 'M',
     tip: 'Özel mesaj, adında olduğu gibi özel kalmalıdır.',
-    text: 'Bir arkadaşının özel mesajını ekran görüntüsü alıp başkasına göstermek istiyorsun.',
+    text: 'Ahmet K.\'in özel mesajını ekran görüntüsü alıp başkasına göstermek istiyorsun.',
     postTitle: 'Mesaj ekranı',
     postText: 'Mesajda kişisel bilgiler ve özel bir konuşma yer alıyor.',
     choices: [
       {
-        text: 'Ekran görüntüsünü gruba atarım.',
+        text: 'Ahmet K.\'in ekran görüntüsünü gruba atarım.',
         effect: { respect: -18, responsibility: -15, kindness: -12 },
         title: 'Güven zedelendi',
         what: 'Özel konuşma izinsiz şekilde başkalarına açıldı.',
@@ -705,7 +705,7 @@ const scenarioPool = [
         notice: 'Gizli konuşmayı yaymak dijital güveni kırar.'
       },
       {
-        text: 'Paylaşmam, konuşmayı özel tutarım.',
+        text: 'Paylaşmam, konuşmayı Ahmet K. ile özel tutarım.',
         effect: { respect: 16, responsibility: 14, kindness: 10 },
         title: 'Gizlilik korundu',
         what: 'Özel konuşmanın sınırına saygı gösterdin.',
@@ -713,7 +713,7 @@ const scenarioPool = [
         notice: 'Mahremiyeti korumak güven ilişkisini güçlendirir.'
       },
       {
-        text: 'İsmi kapatıp paylaşırım.',
+        text: 'Ahmet K. ismini kapatıp paylaşırım.',
         effect: { respect: -8, responsibility: -8 },
         title: 'Gizlilik tam korunmadı',
         what: 'İsim kapansa bile konuşmanın içeriği kişiyi tanınabilir kılabilir.',
