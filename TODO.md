@@ -1,2 +1,0 @@
-- Add README.md (Also add qr code)
-- Fix mobile vision of the game
