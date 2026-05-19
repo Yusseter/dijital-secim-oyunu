@@ -6,7 +6,11 @@ T.C. Millî Eğitim Bakanlığı Ömer-Serpil Özberber AİHL Fen ve Sosyal Bili
 
 QR kodu **okutarak** veya QR koda **tıklayarak** uygulamaya hızlıca erişebilirsiniz:
 
-[<img src="Qr-Codes/qr-code_with_OSOAIHL_logo.png" alt="Dijital Seçim Oyunu QR kodu" width="140" />](https://yusseter.github.io/dijital-secim-oyunu/)
+<p align="right">
+  <a href="https://yusseter.github.io/dijital-secim-oyunu/">
+    <img src="Qr-Codes/qr-code_with_OSOAIHL_logo.png" alt="Dijital Seçim Oyunu QR kodu" width="200" />
+  </a>
+</p>
 
 ## Proje Bilgileri
 
