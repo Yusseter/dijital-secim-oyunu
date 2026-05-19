@@ -27,28 +27,51 @@ const valueMeta = {
 
 const themeStorageKey = 'dijital-secim-theme';
 const colorModeStorageKey = 'dijital-secim-color-mode';
+const themeLabels = {
+  modern: 'Modern görünüm',
+  formal: 'Pano görünümü'
+};
 const colorModeOrder = ['auto', 'dark', 'light'];
 const colorModeLabels = {
   auto: 'Renk: Otomatik',
   dark: 'Renk: Koyu',
   light: 'Renk: Aydınlık'
 };
+const colorModeSelectLabels = {
+  auto: 'Otomatik',
+  dark: 'Koyu',
+  light: 'Aydınlık'
+};
 
 function setTheme(theme) {
   const activeTheme = theme === 'formal' ? 'formal' : 'modern';
   document.body.dataset.theme = activeTheme;
 
-  const toggle = document.getElementById('themeToggle');
-  if (toggle) {
-    toggle.textContent = activeTheme === 'formal' ? 'Modern görünüm' : 'Pano görünümü';
-    toggle.setAttribute('aria-pressed', activeTheme === 'formal' ? 'true' : 'false');
+  const value = document.getElementById('themeSelectValue');
+  const button = document.getElementById('themeSelectButton');
+
+  if (value) {
+    value.textContent = themeLabels[activeTheme];
   }
+
+  if (button) {
+    button.setAttribute('aria-label', `Görünüm: ${themeLabels[activeTheme]}. Değiştirmek için tıkla.`);
+  }
+
+  document.querySelectorAll('[data-setting-option="theme"]').forEach(option => {
+    option.setAttribute('aria-selected', option.dataset.value === activeTheme ? 'true' : 'false');
+  });
 
   try {
     localStorage.setItem(themeStorageKey, activeTheme);
   } catch (error) {
     // Tema seçimi saklanamazsa oyun yine çalışmaya devam eder.
   }
+}
+
+function selectTheme(theme) {
+  setTheme(theme);
+  closeSettingSelects();
 }
 
 function toggleTheme() {
@@ -69,11 +92,20 @@ function applyColorMode(mode) {
   document.body.dataset.colorMode = activeMode;
   document.body.dataset.colorScheme = activeScheme;
 
-  const toggle = document.getElementById('colorModeToggle');
-  if (toggle) {
-    toggle.textContent = colorModeLabels[activeMode];
-    toggle.setAttribute('aria-label', `${colorModeLabels[activeMode]}. Değiştirmek için tıkla.`);
+  const value = document.getElementById('colorModeSelectValue');
+  const button = document.getElementById('colorModeSelectButton');
+
+  if (value) {
+    value.textContent = colorModeSelectLabels[activeMode];
   }
+
+  if (button) {
+    button.setAttribute('aria-label', `${colorModeLabels[activeMode]}. Değiştirmek için tıkla.`);
+  }
+
+  document.querySelectorAll('[data-setting-option="color"]').forEach(option => {
+    option.setAttribute('aria-selected', option.dataset.value === activeMode ? 'true' : 'false');
+  });
 
   try {
     localStorage.setItem(colorModeStorageKey, activeMode);
@@ -82,11 +114,90 @@ function applyColorMode(mode) {
   }
 }
 
+function selectColorMode(mode) {
+  applyColorMode(mode);
+  closeSettingSelects();
+}
+
 function cycleColorMode() {
   const currentMode = document.body.dataset.colorMode || 'auto';
   const currentIndex = colorModeOrder.indexOf(currentMode);
   const nextMode = colorModeOrder[(currentIndex + 1) % colorModeOrder.length];
   applyColorMode(nextMode);
+}
+
+function closeSettingSelects(exceptType) {
+  document.querySelectorAll('.setting-select').forEach(select => {
+    if (exceptType && select.dataset.select === exceptType) {
+      return;
+    }
+
+    select.classList.remove('open');
+    const button = select.querySelector('.setting-select-button');
+    if (button) {
+      button.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+function toggleSettingSelect(type) {
+  const select = document.querySelector(`.setting-select[data-select="${type}"]`);
+  if (!select) {
+    return;
+  }
+
+  const willOpen = !select.classList.contains('open');
+  closeSettingSelects(type);
+  select.classList.toggle('open', willOpen);
+
+  const button = select.querySelector('.setting-select-button');
+  if (button) {
+    button.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+  }
+}
+
+function setSettingsMenu(open) {
+  document.body.classList.toggle('settings-open', open);
+
+  const toggle = document.getElementById('settingsMenuToggle');
+  if (toggle) {
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Görünüm ayarlarını kapat' : 'Görünüm ayarlarını aç');
+  }
+}
+
+function toggleSettingsMenu() {
+  setSettingsMenu(!document.body.classList.contains('settings-open'));
+}
+
+function closeSettingsMenu() {
+  setSettingsMenu(false);
+  closeSettingSelects();
+}
+
+function initSettingsMenu() {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  window.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      closeSettingSelects();
+      closeSettingsMenu();
+    }
+  });
+
+  window.addEventListener('click', event => {
+    if (!event.target.closest('.setting-select')) {
+      closeSettingSelects();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.matchMedia('(min-width: 861px)').matches) {
+      closeSettingsMenu();
+    }
+  });
 }
 
 function initColorMode() {
@@ -383,4 +494,5 @@ function restartGame() {
 
 initTheme();
 initColorMode();
+initSettingsMenu();
 updateMeters();

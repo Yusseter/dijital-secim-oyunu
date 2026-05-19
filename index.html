@@ -3,13 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dijital Seçim | Değer Farkındalığı Oyunu</title>
+  <title>Dijital Çağda Değer Erozyonu | Dijital Seçim Oyunu</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body data-theme="modern" data-color-mode="auto" data-color-scheme="dark">
-  <div class="theme-controls" aria-label="Görünüm ayarları">
-    <button class="theme-toggle" id="themeToggle" type="button" onclick="toggleTheme()">Pano görünümü</button>
-    <button class="theme-toggle" id="colorModeToggle" type="button" onclick="cycleColorMode()">Renk: Otomatik</button>
+  <button class="menu-toggle" id="settingsMenuToggle" type="button" aria-label="Görünüm ayarlarını aç" aria-controls="themeControls" aria-expanded="false" onclick="toggleSettingsMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="settings-backdrop" aria-hidden="true" onclick="closeSettingsMenu()"></div>
+  <div class="theme-controls" id="themeControls" aria-label="Görünüm ayarları">
+    <div class="setting-select" data-select="theme">
+      <button class="theme-toggle setting-select-button" id="themeSelectButton" type="button" aria-haspopup="listbox" aria-expanded="false" onclick="toggleSettingSelect('theme')">
+        <span>Görünüm</span>
+        <b id="themeSelectValue">Modern görünüm</b>
+      </button>
+      <div class="setting-options" role="listbox" aria-label="Görünüm modu">
+        <button class="setting-option" type="button" role="option" data-setting-option="theme" data-value="modern" onclick="selectTheme('modern')">Modern görünüm</button>
+        <button class="setting-option" type="button" role="option" data-setting-option="theme" data-value="formal" onclick="selectTheme('formal')">Pano görünümü</button>
+      </div>
+    </div>
+
+    <div class="setting-select" data-select="color">
+      <button class="theme-toggle setting-select-button" id="colorModeSelectButton" type="button" aria-haspopup="listbox" aria-expanded="false" onclick="toggleSettingSelect('color')">
+        <span>Renk</span>
+        <b id="colorModeSelectValue">Otomatik</b>
+      </button>
+      <div class="setting-options" role="listbox" aria-label="Renk modu">
+        <button class="setting-option" type="button" role="option" data-setting-option="color" data-value="auto" onclick="selectColorMode('auto')">Otomatik</button>
+        <button class="setting-option" type="button" role="option" data-setting-option="color" data-value="dark" onclick="selectColorMode('dark')">Koyu</button>
+        <button class="setting-option" type="button" role="option" data-setting-option="color" data-value="light" onclick="selectColorMode('light')">Aydınlık</button>
+      </div>
+    </div>
   </div>
 
   <main class="app" data-screen="start">
@@ -73,6 +99,11 @@
             <b>Profilini gör</b>
             <span>Oyun sonunda dijital kullanıcı profilin ve rozetlerin oluşur.</span>
           </div>
+        </div>
+
+        <div class="scenario-card fuar-question">
+          <h2>Fuar sorusu</h2>
+          <p>“Sosyal medyada değerlerimizi korumak için hangi davranışı değiştirmeliyiz?”</p>
         </div>
 
         <div class="start-action">
@@ -150,10 +181,6 @@
           <div class="mini">Dijital Nezaket <b id="finalKindness">0</b></div>
         </div>
         <div class="notice" id="resultAdvice"></div>
-        <div class="scenario-card fuar-question">
-          <h2>Fuar sorusu</h2>
-          <p>“Sosyal medyada değerlerimizi korumak için hangi davranışı değiştirmeliyiz?”</p>
-        </div>
         <div class="btns">
           <button class="primary" onclick="restartGame()">Tekrar Oyna</button>
           <button class="ghost" onclick="window.print()">Sonucu Yazdır</button>
@@ -185,14 +212,6 @@
       <div class="side-card">
         <h3>Anlık kazanım</h3>
         <p id="currentInsight">Oyuna başlayınca her seçimin hangi değeri etkilediği burada görünecek.</p>
-      </div>
-
-      <div class="scenario-card fuar-question">
-        <h2>Fuar sorusu</h2>
-        <p>“Sosyal medyada değerlerimizi korumak için hangi davranışı değiştirmeliyiz?”</p>
-      </div>
-      <div class="footer-note">
-        Proje sloganı: Teknoloji gelişirken değerlerimizi de koruyalım.
       </div>
     </aside>
 
