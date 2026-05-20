@@ -6,11 +6,24 @@ T.C. Millî Eğitim Bakanlığı Ömer-Serpil Özberber AİHL Fen ve Sosyal Bili
 
 QR kodu **okutarak** veya QR koda **tıklayarak** uygulamaya hızlıca erişebilirsiniz:
 
-<p align="right">
-  <a href="https://yusseter.github.io/dijital-secim-oyunu/">
-    <img src="Qr-Codes/qr-code_with_OSOAIHL_logo.png" alt="Dijital Seçim Oyunu QR kodu" width="200" />
-  </a>
-</p>
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://yusseter.github.io/dijital-cagda-deger-erozyonu/">
+        <img src="Qr-Codes/Github-Pages/dijital-cagda-deger-erozyonu/qr-code_with_OSOAIHL_logo.png" alt="GitHub Pages QR kodu" width="200" />
+      </a>
+      <br />
+      <b>GitHub Pages</b>
+    </td>
+    <td align="center">
+      <a href="https://dijital-cagda-deger-erozyonu.yusseter.workers.dev/">
+        <img src="Qr-Codes/Cloudflare-Pages/qr-code_with_OSOAIHL_logo.png" alt="Cloudflare Pages QR kodu" width="200" />
+      </a>
+      <br />
+      <b>Cloudflare Pages</b>
+    </td>
+  </tr>
+</table>
 
 ## Proje Bilgileri
 
