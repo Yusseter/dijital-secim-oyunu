@@ -25,26 +25,6 @@ Aşağıdaki **QR kodlarını okutarak** ya da **üzerlerine tıklayarak** uygul
   </tr>
 </table>
 
-## Hızlı Bağlantılar
-
-- [Değer Farkındalığı Oyunu](https://yusseter.github.io/dijital-cagda-deger-erozyonu/Değer_Farkındalığı_Oyunu)
-- [Dijital Denge Çarkı](https://yusseter.github.io/dijital-cagda-deger-erozyonu/Dijital_Denge_Çarkı)
-- [GitHub](https://yusseter.github.io/dijital-cagda-deger-erozyonu/GitHub)
-
-## Yerel Test
-
-VS Code Live Server, GitHub Pages gibi `404.html` fallback davranışı göstermediği için güzel bağlantıları yerelde test etmek üzere küçük Node sunucusu kullanılabilir:
-
-```bash
-node dev-server.js
-```
-
-Sunucu varsayılan olarak `http://127.0.0.1:5500/` adresini dener; port doluysa sonraki boş porta geçer. Belirli bir port için:
-
-```bash
-node dev-server.js 5510
-```
-
 ## Proje Bilgileri
 
 | Alan | Bilgi |
