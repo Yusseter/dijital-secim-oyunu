@@ -4,7 +4,7 @@
 
 T.C. Millî Eğitim Bakanlığı Ömer-Serpil Özberber AİHL Fen ve Sosyal Bilimler Proje Okulu 12. Dönem TÜBİTAK 4006-A Bilim Fuarı Proje Sergisi
 
-QR kodu **okutarak** veya QR koda **tıklayarak** uygulamaya hızlıca erişebilirsiniz:
+Aşağıdaki **QR kodlarını okutarak** ya da **üzerlerine tıklayarak** uygulamaya hızlıca erişebilirsiniz:
 
 <table>
   <tr>
