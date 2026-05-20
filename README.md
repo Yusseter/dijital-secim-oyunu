@@ -10,14 +10,14 @@ QR kodu **okutarak** veya QR koda **tıklayarak** uygulamaya hızlıca erişebil
   <tr>
     <td align="center">
       <a href="https://yusseter.github.io/dijital-cagda-deger-erozyonu/">
-        <img src="Qr-Codes/Github-Pages/dijital-cagda-deger-erozyonu/qr-code_with_OSOAIHL_logo.png" alt="GitHub Pages QR kodu" width="200" />
+        <img src="Images/Qr-Codes/Github-Pages/dijital-cagda-deger-erozyonu/qr-code_with_OSOAIHL_logo.png" alt="GitHub Pages QR kodu" width="200" />
       </a>
       <br />
       <b>GitHub Pages</b>
     </td>
     <td align="center">
       <a href="https://dijital-cagda-deger-erozyonu.yusseter.workers.dev/">
-        <img src="Qr-Codes/Cloudflare-Pages/qr-code_with_OSOAIHL_logo.png" alt="Cloudflare Pages QR kodu" width="200" />
+        <img src="Images/Qr-Codes/Cloudflare-Pages/qr-code_with_OSOAIHL_logo.png" alt="Cloudflare Pages QR kodu" width="200" />
       </a>
       <br />
       <b>Cloudflare Pages</b>
@@ -51,9 +51,9 @@ Bu araştırma, nicel ve nitel verilerin birlikte kullanıldığı **karma yönt
 
 Pano üzerinde yer alan bulgular ve sütun grafikleri aşağıda sunulmuştur:
 
-![Sosyal medya kullanım süresine göre değer farkındalığı grafiği](Images/colon-1.png)
+![Sosyal medya kullanım süresine göre değer farkındalığı grafiği](Images/Graphs/colon-1.png)
 
-![Değer türlerine göre duyarlılık düzeyi grafiği](Images/colon-2.png)
+![Değer türlerine göre duyarlılık düzeyi grafiği](Images/Graphs/colon-2.png)
 
 ## Sonuç ve Tartışma
 

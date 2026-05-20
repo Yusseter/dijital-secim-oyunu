@@ -157,6 +157,7 @@ body[data-theme="modern"][data-color-scheme="light"] .badge {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   background: rgba(248, 250, 252, 0.96);
   border: 1px solid rgba(255, 255, 255, 0.62);
   border-radius: 20px;
@@ -182,6 +183,11 @@ body[data-theme="modern"][data-color-scheme="light"] .badge {
   height: 100%;
   object-fit: contain;
   display: block;
+}
+
+.school-logo {
+  transform: scale(1.35);
+  transform-origin: center;
 }
 
 .brand-title {
