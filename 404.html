@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#07111f" />
+  <title>Yonlendiriliyor</title>
+  <style>
+    html {
+      min-height: 100%;
+      background: #07111f;
+    }
+
+    body {
+      display: none;
+      margin: 0;
+      background: #07111f;
+    }
+  </style>
+  <script>
+    (function () {
+      const routes = new Set(['deger_farkindaligi_oyunu', 'dijital_denge_carki', 'github']);
+      const repositoryUrl = 'https://github.com/Yusseter/dijital-cagda-deger-erozyonu';
+      const parts = window.location.pathname.split('/').filter(Boolean);
+      const route = normalizeRouteSegment(parts[parts.length - 1] || '');
+      const repoIndex = parts.indexOf('dijital-cagda-deger-erozyonu');
+      const baseParts = repoIndex >= 0 ? parts.slice(0, repoIndex + 1) : [];
+      const basePath = `/${baseParts.join('/')}${baseParts.length ? '/' : ''}`;
+
+      function normalizeRouteSegment(segment) {
+        if (!segment) {
+          return '';
+        }
+
+        let value = segment;
+
+        try {
+          value = decodeURIComponent(value);
+        } catch (error) {
+          value = segment;
+        }
+
+        const slug = value
+          .trim()
+          .toLocaleLowerCase('tr')
+          .replace(/ğ/g, 'g')
+          .replace(/ü/g, 'u')
+          .replace(/ş/g, 's')
+          .replace(/ı/g, 'i')
+          .replace(/ö/g, 'o')
+          .replace(/ç/g, 'c')
+          .replace(/[\s-]+/g, '_')
+          .replace(/[^a-z0-9_]/g, '')
+          .replace(/_+/g, '_')
+          .replace(/^_+|_+$/g, '');
+
+        return routes.has(slug) ? slug : '';
+      }
+
+      if (route === 'github') {
+        window.location.replace(repositoryUrl);
+        return;
+      }
+
+      if (routes.has(route)) {
+        window.location.replace(`${basePath}index.html?route=${encodeURIComponent(route)}`);
+        return;
+      }
+
+      window.location.replace(basePath || '/');
+    })();
+  </script>
+</head>
+<body>
+  <noscript><a href="/">Ana sayfaya don</a></noscript>
+</body>
+</html>

@@ -64,15 +64,12 @@
           <li>Devam Et butonuyla 6 rastgele senaryoyu tamamla.</li>
           <li>Oyun sonunda dijital profilini, güçlü değerini, gelişecek değerini ve rozetlerini gör.</li>
         </ol>
-        <p>Menüden ana menüye dönebilir ya da oyunu mevcut puanlarınla bitirebilirsin.</p>
+        <p>Menüden ana menüye dönebilir, oyun sırasında sağ panelden oyunu mevcut puanlarınla bitirebilirsin.</p>
       </div>
     </div>
 
     <div class="setting-actions drawer-extra" aria-label="Oyun araçları">
-      <button class="theme-toggle setting-action" type="button" onclick="restartFromMenu()">Yeni Oyun Başlat</button>
-      <button class="theme-toggle setting-action" type="button" onclick="openBalanceWheel(true)">Dijital Denge Çarkı</button>
       <button class="theme-toggle setting-action" id="homeMenuButton" type="button" onclick="goToMainMenu(true)" disabled>Ana Menü</button>
-      <button class="theme-toggle setting-action" id="finishMenuButton" type="button" onclick="finishFromMenu()" disabled>Oyunu Bitir</button>
       <button class="theme-toggle setting-action" id="fullscreenButton" type="button" onclick="toggleFullscreen()">Tam Ekran</button>
     </div>
   </div>
@@ -147,9 +144,11 @@
         </div>
 
         <div class="start-action">
-          <button class="primary" onclick="startGame()">Oyuna Başla</button>
+          <button class="primary start-game-button" onclick="startGame()">
+            <span>Oyuna Başla</span>
+            <small>Yaklaşık 2 dakika sürer</small>
+          </button>
           <button class="ghost" onclick="openBalanceWheel(false)">Dijital Denge Çarkı</button>
-          <span class="time-note">Yaklaşık 2 dakika sürer.</span>
         </div>
       </div>
 
@@ -222,6 +221,10 @@
               <span class="post-chip" id="postCategory">Sosyal medya</span>
               <strong id="postTitle">Sosyal medya bildirimi</strong>
               <small id="postText"></small>
+              <div class="scenario-insight">
+                <span>Dijital denge ipucu</span>
+                <p id="currentInsight">Oyuna başlayınca her seçimin hangi değeri etkilediği burada görünecek.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -297,22 +300,23 @@
       </div>
 
       <div class="side-card">
-        <h3>Anlık kazanım</h3>
-        <p id="currentInsight">Oyuna başlayınca her seçimin hangi değeri etkilediği burada görünecek.</p>
+        <h3>Oyun kontrolü</h3>
+        <p id="gameControlStatus">Oyuna başlayınca kalan senaryo ve bitirme seçeneği burada görünür.</p>
+        <button class="ghost side-finish-button" id="sideFinishButton" type="button" onclick="finishFromMenu()" hidden>Oyunu Bitir</button>
       </div>
     </aside>
 
     <footer class="copyright-footer">
       <strong>© 2026 Dijital Çağda Değer Erozyonu Projesi.</strong>
       <span>MIT License kapsamında yayımlanmıştır.</span>
-      <a class="footer-github-link" href="https://github.com/Yusseter/dijital-cagda-deger-erozyonu" target="_blank" rel="noopener noreferrer" aria-label="GitHub deposunu aç">
+      <span>Bu uygulama eğitim ve farkındalık amacıyla hazırlanmıştır.</span>
+      <a class="footer-github-link" id="github" href="https://github.com/Yusseter/dijital-cagda-deger-erozyonu" target="_blank" rel="noopener noreferrer" aria-label="GitHub deposunu aç">
         <span class="footer-github-icons" aria-hidden="true">
           <img class="footer-github-icon footer-github-icon-dark" src="Images/Icons/github_icon_white.png" alt="" />
           <img class="footer-github-icon footer-github-icon-light" src="Images/Icons/github_icon_black.png" alt="" />
         </span>
         GitHub
       </a>
-      <span>Bu uygulama eğitim ve farkındalık amacıyla hazırlanmıştır.</span>
     </footer>
   </main>
 

@@ -54,6 +54,13 @@ const defaultSoundLevel = 100;
 const wheelMinFlickSpeed = 0.38;
 const wheelMaxFlickSpeed = 1.35;
 const wheelMinFlickDistance = 18;
+const routeTargets = new Set(['deger_farkindaligi_oyunu', 'dijital_denge_carki', 'github']);
+const cleanRoutePaths = {
+  deger_farkindaligi_oyunu: 'Değer_Farkındalığı_Oyunu',
+  dijital_denge_carki: 'Dijital_Denge_Çarkı',
+  github: 'GitHub'
+};
+const repositoryUrl = 'https://github.com/Yusseter/dijital-cagda-deger-erozyonu';
 
 let soundLevel = defaultSoundLevel / 100;
 let audioContext = null;
@@ -387,11 +394,6 @@ function toggleHowTo() {
   button.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
 }
 
-function restartFromMenu() {
-  restartGame();
-  closeSettingsMenu();
-}
-
 function resetGameState() {
   index = 0;
   scenarios = [];
@@ -558,7 +560,7 @@ function initWheelParticipation() {
   updateWheelDisplay();
 }
 
-function openBalanceWheel(confirmIfActive = true) {
+function openBalanceWheel(confirmIfActive = true, updateRoute = true) {
   if (confirmIfActive && isActiveGameScreen()) {
     const shouldLeave = window.confirm('Aktif oyunu bırakıp Dijital Denge Çarkı etkinliğine geçmek istiyor musun? Puanların sıfırlanacak.');
 
@@ -570,6 +572,9 @@ function openBalanceWheel(confirmIfActive = true) {
   }
 
   closeSettingsMenu();
+  if (updateRoute) {
+    setRoutePath('dijital_denge_carki');
+  }
   updateWheelDisplay();
 
   const insight = document.getElementById('currentInsight');
@@ -792,14 +797,29 @@ function updateMenuActions() {
   const screen = getCurrentScreen();
   const hasStartedGame = scenarios.length > 0;
   const homeButton = document.getElementById('homeMenuButton');
-  const finishButton = document.getElementById('finishMenuButton');
+  const sideFinishButton = document.getElementById('sideFinishButton');
+  const gameControlStatus = document.getElementById('gameControlStatus');
+  const canFinish = hasStartedGame && isActiveGameScreen();
 
   if (homeButton) {
     homeButton.disabled = screen === 'start';
   }
 
-  if (finishButton) {
-    finishButton.disabled = !hasStartedGame || !isActiveGameScreen();
+  if (sideFinishButton) {
+    sideFinishButton.hidden = !canFinish;
+    sideFinishButton.disabled = !canFinish;
+  }
+
+  if (gameControlStatus) {
+    if (canFinish) {
+      gameControlStatus.textContent = `Senaryo ${Math.min(index + 1, scenarios.length)} / ${scenarios.length}. İstersen oyunu mevcut puanlarınla bitirebilirsin.`;
+    } else if (screen === 'result') {
+      gameControlStatus.textContent = 'Oyun tamamlandı. Sonucunu inceleyebilir veya yeni oyun başlatabilirsin.';
+    } else if (screen === 'balance-wheel') {
+      gameControlStatus.textContent = 'Dijital denge çarkı açık. Oyuna dönmek için ana menüyü kullanabilirsin.';
+    } else {
+      gameControlStatus.textContent = 'Oyuna başlayınca kalan senaryo ve bitirme seçeneği burada görünür.';
+    }
   }
 }
 
@@ -818,6 +838,177 @@ function scrollPanelIntoView() {
   });
 }
 
+function getAppBasePathname() {
+  if (typeof window === 'undefined') {
+    return '/';
+  }
+
+  let pathname = window.location.pathname || '/';
+
+  if (!pathname.endsWith('/')) {
+    pathname = pathname.replace(/\/[^/]*$/, '/');
+  }
+
+  const parts = pathname.split('/').filter(Boolean);
+  const lastPart = parts[parts.length - 1];
+
+  if (normalizeRouteSegment(lastPart)) {
+    parts.pop();
+  }
+
+  return `/${parts.join('/')}${parts.length ? '/' : ''}`;
+}
+
+function normalizeRouteSegment(segment) {
+  if (!segment) {
+    return '';
+  }
+
+  let value = segment;
+
+  try {
+    value = decodeURIComponent(value);
+  } catch (error) {
+    value = segment;
+  }
+
+  const slug = value
+    .trim()
+    .toLocaleLowerCase('tr')
+    .replace(/ğ/g, 'g')
+    .replace(/ü/g, 'u')
+    .replace(/ş/g, 's')
+    .replace(/ı/g, 'i')
+    .replace(/ö/g, 'o')
+    .replace(/ç/g, 'c')
+    .replace(/[\s-]+/g, '_')
+    .replace(/[^a-z0-9_]/g, '')
+    .replace(/_+/g, '_')
+    .replace(/^_+|_+$/g, '');
+
+  return routeTargets.has(slug) ? slug : '';
+}
+
+function getRouteFromPath() {
+  if (typeof window === 'undefined') {
+    return '';
+  }
+
+  const parts = (window.location.pathname || '').split('/').filter(Boolean);
+  const lastPart = parts[parts.length - 1] || '';
+
+  return normalizeRouteSegment(lastPart);
+}
+
+function getRequestedRoute() {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const queryRoute = normalizeRouteSegment(params.get('route'));
+
+  if (queryRoute) {
+    return { target: queryRoute, source: 'query' };
+  }
+
+  const pathRoute = getRouteFromPath();
+
+  if (pathRoute) {
+    return { target: pathRoute, source: 'path' };
+  }
+
+  const hashRoute = normalizeRouteSegment(window.location.hash.replace('#', ''));
+
+  if (hashRoute) {
+    return { target: hashRoute, source: 'hash' };
+  }
+
+  return null;
+}
+
+function setRoutePath(target) {
+  if (typeof window === 'undefined' || !window.history || !window.location) {
+    return;
+  }
+
+  if (window.location.protocol === 'file:') {
+    const currentHash = window.location.hash.replace('#', '');
+    if (currentHash === target || (!target && !routeTargets.has(currentHash))) {
+      return;
+    }
+
+    const fileUrl = new URL(window.location.href);
+    fileUrl.search = '';
+    fileUrl.hash = target || '';
+    window.history.replaceState(null, '', fileUrl);
+    return;
+  }
+
+  const url = new URL(window.location.href);
+  const basePathname = getAppBasePathname();
+
+  if (target) {
+    url.pathname = `${basePathname}${cleanRoutePaths[target] || ''}`;
+  } else {
+    url.pathname = basePathname;
+  }
+
+  url.search = '';
+  url.hash = '';
+
+  if (url.href === window.location.href) {
+    return;
+  }
+
+  window.history.replaceState(null, '', url);
+}
+
+function focusGithubLink() {
+  const githubLink = document.getElementById('github');
+  if (!githubLink) {
+    return;
+  }
+
+  githubLink.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  try {
+    githubLink.focus({ preventScroll: true });
+  } catch (error) {
+    githubLink.focus();
+  }
+}
+
+function handleRoute() {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  const route = getRequestedRoute();
+
+  if (!route) {
+    return;
+  }
+
+  const { target, source } = route;
+
+  if (target === 'github') {
+    if (source === 'hash') {
+      focusGithubLink();
+    } else {
+      window.location.replace(repositoryUrl);
+    }
+    return;
+  }
+
+  if (target === 'deger_farkindaligi_oyunu') {
+    startGame(false);
+  } else if (target === 'dijital_denge_carki') {
+    openBalanceWheel(false, false);
+  }
+
+  setRoutePath(target);
+}
+
 function goToMainMenu(confirmIfActive = true) {
   if (confirmIfActive && isActiveGameScreen()) {
     const shouldLeave = window.confirm('Aktif oyunu bırakıp ana menüye dönmek istiyor musun? Puanların sıfırlanacak.');
@@ -829,6 +1020,7 @@ function goToMainMenu(confirmIfActive = true) {
 
   closeSettingsMenu();
   resetGameState();
+  setRoutePath('');
   showScreen('start');
 }
 
@@ -868,6 +1060,16 @@ function initSettingsMenu() {
 
   document.addEventListener('fullscreenchange', updateFullscreenButton);
   updateFullscreenButton();
+}
+
+function initRouting() {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  window.addEventListener('hashchange', handleRoute);
+  window.addEventListener('popstate', handleRoute);
+  window.requestAnimationFrame(handleRoute);
 }
 
 function initColorMode() {
@@ -1038,8 +1240,11 @@ function selectScenarios() {
   return shuffle(selected).slice(0, questionCount);
 }
 
-function startGame() {
+function startGame(updateRoute = true) {
   playSound('start');
+  if (updateRoute) {
+    setRoutePath('deger_farkindaligi_oyunu');
+  }
   index = 0;
   scenarios = selectScenarios();
   scores = { respect: 50, truth: 50, responsibility: 50, kindness: 50 };
@@ -1216,3 +1421,4 @@ initWheelParticipation();
 initWheelDrag();
 updateMeters();
 updateMenuActions();
+initRouting();

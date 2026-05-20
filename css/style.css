@@ -635,20 +635,33 @@ body.settings-open .settings-backdrop {
 .start-action .ghost {
   flex: 0 1 260px;
   max-width: 360px;
-}
-
-.start-action .primary {
+  min-height: 68px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 18px 22px;
+  border-radius: 18px;
   font-size: 18px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
 }
 
-.start-action .time-note {
-  flex-basis: 100%;
+.start-action .ghost {
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(85, 183, 255, 0.28);
 }
 
-.time-note {
-  color: var(--muted);
-  font-size: 14px;
+.start-game-button {
+  flex-direction: column;
+  gap: 4px;
+}
+
+.start-game-button small {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .panel, .side {
@@ -866,7 +879,11 @@ button:disabled:hover {
 }
 
 .post strong { display: block; margin-bottom: 8px; }
-.post small { color: var(--muted); }
+.post small {
+  display: block;
+  color: var(--muted);
+  line-height: 1.45;
+}
 
 .post-chip {
   display: inline-flex;
@@ -922,6 +939,44 @@ button:disabled:hover {
   margin-top: 5px;
   color: var(--muted);
   font-size: 14px;
+}
+
+.scenario-insight {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(85, 183, 255, 0.12);
+  border: 1px solid rgba(85, 183, 255, 0.28);
+}
+
+.scenario-insight span {
+  display: block;
+  color: #cfeeff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.scenario-insight p {
+  margin: 6px 0 0;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.post .scenario-insight {
+  margin-top: 14px;
+  padding: 12px 13px;
+  border-radius: 14px;
+}
+
+.post .scenario-insight span {
+  font-size: 11px;
+}
+
+.post .scenario-insight p {
+  font-size: calc(14px * var(--text-scale));
 }
 
 .meter { margin: 16px 0; }
@@ -1025,6 +1080,17 @@ button:disabled:hover {
 .side-card p {
   margin: 0;
   font-size: 14px;
+}
+
+.side-finish-button {
+  width: 100%;
+  margin-top: 14px;
+  text-align: center;
+  font-weight: 800;
+}
+
+.side-finish-button[hidden] {
+  display: none;
 }
 
 .fuar-question {
@@ -1538,11 +1604,20 @@ body[data-theme="formal"] .decision-box p {
 
 body[data-theme="formal"] .choice-prompt,
 body[data-theme="formal"] .notice,
-body[data-theme="formal"] .fuar-question {
+body[data-theme="formal"] .fuar-question,
+body[data-theme="formal"] .scenario-insight {
   background: rgba(176, 47, 58, 0.08);
   border: 2px solid rgba(176, 47, 58, 0.28);
   color: #5f1f26;
   border-radius: 8px;
+}
+
+body[data-theme="formal"] .scenario-insight span {
+  color: #7e1f2b;
+}
+
+body[data-theme="formal"] .scenario-insight p {
+  color: #111827;
 }
 
 body[data-theme="formal"] .bar {
@@ -1637,9 +1712,15 @@ body[data-theme="formal"][data-color-scheme="dark"] .copyright-footer {
 body[data-theme="formal"][data-color-scheme="dark"] .project-slogan,
 body[data-theme="formal"][data-color-scheme="dark"] .choice-prompt,
 body[data-theme="formal"][data-color-scheme="dark"] .notice,
-body[data-theme="formal"][data-color-scheme="dark"] .fuar-question {
+body[data-theme="formal"][data-color-scheme="dark"] .fuar-question,
+body[data-theme="formal"][data-color-scheme="dark"] .scenario-insight {
   background: rgba(176, 47, 58, 0.14);
   border-color: rgba(247, 241, 223, 0.24);
+  color: #ffe2d9;
+}
+
+body[data-theme="formal"][data-color-scheme="dark"] .scenario-insight span,
+body[data-theme="formal"][data-color-scheme="dark"] .scenario-insight p {
   color: #ffe2d9;
 }
 
@@ -1741,8 +1822,7 @@ body[data-theme="formal"][data-color-scheme="dark"] .logo-frame {
   text-align: center;
 }
 
-.copyright-footer > span::before,
-.footer-github-link::before {
+.copyright-footer > span::before {
   content: "•";
   margin-right: 8px;
   color: var(--muted);
@@ -1751,7 +1831,11 @@ body[data-theme="formal"][data-color-scheme="dark"] .logo-frame {
 .footer-github-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--line);
   color: var(--text);
   font-weight: 800;
   text-decoration: none;
@@ -1759,7 +1843,9 @@ body[data-theme="formal"][data-color-scheme="dark"] .logo-frame {
 }
 
 .footer-github-link:hover {
-  color: var(--accent);
+  color: var(--text);
+  background: rgba(85, 183, 255, 0.16);
+  border-color: rgba(85, 183, 255, 0.34);
 }
 
 .footer-github-icons {
@@ -1813,6 +1899,10 @@ body .decision-box p {
 
 body .choice-prompt strong {
   font-size: calc(22px * var(--text-scale));
+}
+
+body .scenario-insight p {
+  font-size: calc(15px * var(--text-scale));
 }
 
 body .wheel-result strong {
